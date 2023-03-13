@@ -6,13 +6,13 @@
 /*   By: dsudadec <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 01:32:46 by dsudadec          #+#    #+#             */
-/*   Updated: 2023/02/27 22:06:36 by dsudadec         ###   ########.fr       */
+/*   Updated: 2023/03/13 22:19:40 by dsudadec         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include	"libft.h"
 
-static int	fitlen(char const *s, char c)
+static int	flen(char const *s, char c)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ static int	setlen(char const *s, char c)
 	return (i);
 }
 
-static int	detlen(char const *s, char c)
+static int	dlen(char const *s, char c)
 {
 	int	i;
 
@@ -71,11 +71,11 @@ char	**ft_split(char const *s, char c)
 	int		slen;
 
 	slen = ft_strlen(s);
-	arr = malloc(sizeof(char *) * (fitlen(s, c) + 1));
+	arr = malloc(sizeof(char *) * (flen(s, c) + 1));
 	if (!arr)
 		return (NULL);
 	i = 0;
-	j = detlen(&s[0], c);
+	j = dlen(&s[0], c);
 	while (s[j] && j <= slen)
 	{
 		len = setlen(&s[j], c);
@@ -85,7 +85,7 @@ char	**ft_split(char const *s, char c)
 		*arr[i] = 0;
 		arr[i] = setstr(arr[i], &s[j], len);
 		i++;
-		j += len + detlen(&s[j + len], c);
+		j += len + dlen(&s[j + len], c);
 	}
 	arr[i] = NULL;
 	return (arr);
